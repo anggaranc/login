@@ -1,9 +1,6 @@
 <?php
 include 'koneksi.php';
-// Establishing Connection with Server by passing server_name, user_id and password as a parameter
-//$connection = mysql_connect("localhost", "root", "");
-// Selecting Database
-//$db = mysql_select_db("company", $connection);
+
 session_start();// Starting Session
 // Storing Session
 $user_check=$_SESSION['login_user'];
@@ -13,7 +10,7 @@ $ses_sql=mysql_query("select username from login where username='$user_check'", 
 $row = mysql_fetch_assoc($ses_sql);
 $login_session =$row['username'];
 
- // user online update
+// user online update
 $time=time();
 $time_check= $time - 600 ; //SET TIME 10 Minute
 
@@ -40,7 +37,7 @@ $sql4="DELETE FROM user_online WHERE time < $time_check";
 $result4=mysql_query($sql4);
 
 if(!isset($login_session)){
-    mysql_close($connection); // Closing Connection
-    header('Location: index.php'); // Redirecting To Home Page
+    mysql_close($connection); 
+    header('Location: index.php'); 
 }
 ?>
